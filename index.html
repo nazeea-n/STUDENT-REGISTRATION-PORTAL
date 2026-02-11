@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students Website</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #bba3bf;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background: #333;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 18px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 6px 12px;
+        }
+
+        nav a:hover {
+            background: #555;
+            border-radius: 5px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .form-box {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #aaa;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 95%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .ope h2 {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ope h2:hover {
+            background: #444;
+        }
+
+        #courses {
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #aaa;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav>
+    <a onclick="showHome()">Home</a>
+    <a onclick="showRegister()">Register</a>
+    <a onclick="showCourses()">Courses</a>
+    <a onclick="showCalculator()">Calculator</a>
+    <a onclick="showLogin()">Login</a>
+</nav>
+
+<div class="container">
+    <h1>WELCOME TO STUDENT WEBSITE</h1>
+
+    <div id="home">
+        <marquee>WELCOME TO OUR STUDENT INFORMATION WEBSITE!</marquee>
+    </div>
+
+    <div id="courses" style="display:none;">
+        <h2>Courses</h2>
+        <p>◆ Web Development</p>
+        <P>◆ Data Science</P>
+        <p>◆ Python</p>
+        <p>◆ c++</p>
+        <p>◆ Java</p>
+        <p>◆ AI & ML</p>
+    </div>
+
+    <div id="loginForm" class="form-box" style="display:none;">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username"><br>
+        <input type="password" placeholder="Password"><br>
+        <button>Login</button>
+    </div>
+
+    <div id="registerForm" class="form-box" style="display:none;">
+        <h2>Register</h2>
+        <input type="text" id="username" placeholder="Name"><br>
+        <input type="email" id="email" placeholder="Email"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="saveData()">Register</button>
+    </div>
+
+    <div id="calculator" class="form-box" style="display:none;">
+        <h2>Calculator</h2>
+        <form>
+            Value 1:<br>
+            <input type="text" name="value1" id="value1"><br>
+            Value 2:<br>
+            <input type="text" name="value2" id="value2"><br><br>
+
+            <div class="ope">
+                <h2 onclick="addNumber()">+</h2>
+                <h2 onclick="subNumber()">-</h2>
+                <h2 onclick="mulNumber()">*</h2>
+                <h2 onclick="divNumber()">/</h2>
+                <h2 onclick="modNumber()">%</h2>
+                <h2 onclick="squareNumber()">**</h2>
+                <h2 onclick="floorNumber()">//</h2>
+            </div>
+
+            Solution:<br>
+            <input type="text" id="solution" name="solution"><br><br>
+            <input type="reset" id="reset">
+        </form>
+    </div>
+</div>
+
+<script>
+    function hideAll() {
+        document.getElementById("home").style.display = "none";
+        document.getElementById("courses").style.display = "none";
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("registerForm").style.display = "none";
+        document.getElementById("calculator").style.display = "none";
+    }
+
+    function showHome() {
+        hideAll();
+        document.getElementById("home").style.display = "block";
+    }
+
+    function showCourses() {
+        hideAll();
+        document.getElementById("courses").style.display = "block";
+    }
+
+    function showLogin() {
+        hideAll();
+        document.getElementById("loginForm").style.display = "block";
+    }
+
+    function showRegister() {
+        hideAll();
+        document.getElementById("registerForm").style.display = "block";
+    }
+
+    function showCalculator() {
+        hideAll();
+        document.getElementById("calculator").style.display = "block";
+    }
+
+    function addNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 + val2;
+    }
+
+    function subNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 - val2;
+    }
+
+    function mulNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 * val2;
+    }
+
+    function divNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 / val2;
+    }
+
+    function modNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 % val2;
+    }
+
+    function squareNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 ** val2;
+    }
+
+    function floorNumber(){
+        var val1 = parseInt(document.getElementById("value1").value);
+        var val2 = parseInt(document.getElementById("value2").value);
+        document.getElementById("solution").value = val1 // val2;
+    }
+
+    function saveData() {
+        const name = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (name === "" || email === "" || password === "") {
+            alert("Please fill the details");
+            return;
+        }
+
+        localStorage.setItem("username",name);
+        localStorage.setItem("email",email);
+        localStorage.setItem("password",password);
+        window.location.href="view.html";
+    }
+</script>
+
+</body>
+</html>
